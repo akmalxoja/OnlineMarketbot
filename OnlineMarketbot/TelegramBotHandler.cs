@@ -157,7 +157,7 @@ namespace BotPractice3
             }
             else
             {
-                var replyKeyboard = new ReplyKeyboardMarkup(new[]
+                /*var replyKeyboard = new ReplyKeyboardMarkup(new[]
                 {
                 new[]
                 {
@@ -180,7 +180,28 @@ namespace BotPractice3
             string filepath = @"C:\Users\VICTUS\Desktop\DotNet\OnlineMarketbot\users.txt";
             var user_message = $"Received a '{messageText}' message in chat {chatId}. UserName =>  {message.Chat.Username} at {currenttime}\n";
             File.AppendAllText(filepath, user_message);
+
+*/
+
+                ReplyKeyboardMarkup replyKeyboardMarkup = new(new[]
+                {
+                    new KeyboardButton[] { "Telefonlar ro'yxati", "Savatchaga qo'shish" },
+                    new KeyboardButton[] { "Savatchani ko'rish", "Savatchani tozalash" },
+                    new KeyboardButton[] { "Buyurtma qilish", "Mojozlar ro'yxati" },
+                })
+                {
+                    ResizeKeyboard = true
+                };
+
+                Message sentMessage = await botClient.SendTextMessageAsync(
+                    chatId: chatId,
+                    text: "Choose a response",
+                    replyMarkup: replyKeyboardMarkup,
+                    cancellationToken: cancellationToken);
+
             }
+
+
         }
 
 
