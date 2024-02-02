@@ -21,9 +21,7 @@ namespace BotPractice3
             var reques = new HttpRequestMessage(HttpMethod.Get, "https://www.nbu.uz/exchange-rates/json/");
             var responce = httpClient.SendAsync(reques).Result;
 
-
             var body = responce.Content.ReadAsStringAsync().Result;
-
 
             return JsonConvert.DeserializeObject<List<object>>(body);
         }
