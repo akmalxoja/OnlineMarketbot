@@ -213,7 +213,6 @@ namespace BotPractice3
                     => $"Telegram API Error:\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
                 _ => exception.ToString()
             };
-
             Console.WriteLine(ErrorMessage);
             return Task.CompletedTask;
         }
