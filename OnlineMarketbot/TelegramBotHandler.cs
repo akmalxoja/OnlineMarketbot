@@ -8,7 +8,7 @@ using File = System.IO.File;
 using Telegram.Bot.Types.ReplyMarkups;
 using System.ComponentModel.Design;
 
-namespace BotPractice3
+namespace OnlineMarketbot
 {
     public class TelegramBotHandler
     {
@@ -80,7 +80,7 @@ namespace BotPractice3
 
 
 
-                string filepath = @"C:\Users\VICTUS\Desktop\DotNet\OnlineMarketbot\users.txt";
+                string filepath = @"C:\Users\VICTUS\Desktop\.Net\OnlineMarketbot\users.txt";
                 var user_message = $"Received a '{messageText}' message in chat {chatId}. UserName =>  {message.Chat.Username} at {currenttime}\n";
                 File.AppendAllText(filepath, user_message);
 
@@ -157,7 +157,7 @@ namespace BotPractice3
             }
             else
             {
-                /*var replyKeyboard = new ReplyKeyboardMarkup(new[]
+                var replyKeyboard = new ReplyKeyboardMarkup(new[]
                 {
                 new[]
                 {
@@ -166,22 +166,22 @@ namespace BotPractice3
                 },
 
                 });
-                    replyKeyboard.ResizeKeyboard = true;
-                    replyKeyboard.OneTimeKeyboard = true;
+                replyKeyboard.ResizeKeyboard = true;
+                replyKeyboard.OneTimeKeyboard = true;
 
 
-                    await botClient.SendTextMessageAsync(
-                        chatId: chatId,
-                        text: "Share your contact",
-                        replyMarkup: replyKeyboard,
-                        cancellationToken: cancellationToken);
-            
+                await botClient.SendTextMessageAsync(
+                    chatId: chatId,
+                    text: "Share your contact",
+                    replyMarkup: replyKeyboard,
+                    cancellationToken: cancellationToken);
 
-            string filepath = @"C:\Users\VICTUS\Desktop\DotNet\OnlineMarketbot\users.txt";
-            var user_message = $"Received a '{messageText}' message in chat {chatId}. UserName =>  {message.Chat.Username} at {currenttime}\n";
-            File.AppendAllText(filepath, user_message);
 
-*/
+                string filepath = @"C:\Users\VICTUS\Desktop\DotNet\OnlineMarketbot\users.txt";
+                var user_message = $"Received a '{messageText}' message in chat {chatId}. UserName =>  {message.Chat.Username} at {currenttime}\n";
+                File.AppendAllText(filepath, user_message);
+
+
 
                 ReplyKeyboardMarkup replyKeyboardMarkup = new(new[]
                 {

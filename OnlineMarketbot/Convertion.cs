@@ -8,36 +8,35 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BotPractice3
+namespace OnlineMarketbot;
+
+public static class CenvertionMoney
 {
-    public static class CenvertionMoney
+
+
+    public static List<object> ConnectWithJson()
     {
+        HttpClient httpClient = new HttpClient();
 
+        var reques = new HttpRequestMessage(HttpMethod.Get, "https://www.nbu.uz/exchange-rates/json/");
+        var responce = httpClient.SendAsync(reques).Result;
 
-        public static List<object> ConnectWithJson()
+        var body = responce.Content.ReadAsStringAsync().Result;
+
+        return JsonConvert.DeserializeObject<List<object>>(body);
+    }
+    public static string Convertion(List<object> info, string CountryCode)
+    {
+        List<object> list = info;
+        for (int i = 0; i < list.Count; i++)
         {
-            HttpClient httpClient = new HttpClient();
-
-            var reques = new HttpRequestMessage(HttpMethod.Get, "https://www.nbu.uz/exchange-rates/json/");
-            var responce = httpClient.SendAsync(reques).Result;
-
-            var body = responce.Content.ReadAsStringAsync().Result;
-
-            return JsonConvert.DeserializeObject<List<object>>(body);
-        }
-        public static string Convertion(List<object> info, string CountryCode)
-        {
-            List<object> list = info;
-            for (int i = 0; i < list.Count; i++)
+            JObject temp = JObject.Parse(JsonConvert.SerializeObject(list[i]));
+            if (temp["code"].ToString().Equals(CountryCode))
             {
-                JObject temp = JObject.Parse(JsonConvert.SerializeObject(list[i]));
-                if (temp["code"].ToString().Equals(CountryCode))
-                {
-                    return temp["cb_price"].ToString();
-                }
+                return temp["cb_price"].ToString();
             }
-            return String.Empty;
         }
+        return String.Empty;
     }
 }
 
