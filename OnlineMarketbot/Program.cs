@@ -8,7 +8,7 @@ using File = System.IO.File;
 using OnlineMarketbot;
 
 
-namespace PostBot
+namespace OnlineMarketbot
 {
     class Program
     {
